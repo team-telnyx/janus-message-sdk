@@ -8,7 +8,7 @@ plugins {
 }
 
 kmmbridge {
-    //mavenPublishArtifacts()
+    mavenPublishArtifacts()
     spm()
     cocoapodsTrunk()
     //etc
@@ -72,9 +72,7 @@ android {
     }
 }
 
-val publishArtifact = tasks.register("publishArtifact") {
-    dependsOn("publishToMavenLocal")
-}
+
 
 fun getVersionName(): String {
     return "0.0.1-alpha" // Replace with version Name
@@ -83,10 +81,18 @@ fun getVersionName(): String {
 fun getArtifactId(): String {
     return "janus-message-sdk" // Replace with library name ID
 }
+
+tasks.register<Jar>(name = "sourceJar") {
+    from(android.sourceSets["main"].java.srcDirs)
+    archiveClassifier.set("sources")
+    dependsOn("classes")
+}
+
+
 publishing {
     publications {
 
-        create<MavenPublication>("gpr") {
+        create<MavenPublication>("maven") {
             run {
                 groupId = "com.telnyx"
                 artifactId = this@Build_gradle.getArtifactId()
@@ -94,8 +100,7 @@ publishing {
                 artifact("$buildDir/outputs/aar/${this@Build_gradle.getArtifactId()}-${getVersionName()}-release.aar")
                 artifact(tasks["sourceJar"])
             }
-            pom.withXml {
-                description = "A Kotlin Multiplatform library for Janus WebRTC Gateway"
+            pom {
             }
         }
     }
