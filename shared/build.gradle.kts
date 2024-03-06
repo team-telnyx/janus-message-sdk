@@ -13,6 +13,8 @@ kmmbridge {
     cocoapodsTrunk()
     //etc
 }
+addGithubPackagesRepository()
+
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
