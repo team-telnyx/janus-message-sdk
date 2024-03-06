@@ -1,0 +1,106 @@
+plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinCocoapods)
+    alias(libs.plugins.androidLibrary)
+    kotlin("plugin.serialization") version "1.9.22"
+    id("co.touchlab.kmmbridge") version "0.5.2"
+    id("maven-publish")
+}
+
+kmmbridge {
+    //mavenPublishArtifacts()
+    spm()
+    cocoapodsTrunk()
+    //etc
+}
+
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
+kotlin {
+    targetHierarchy.default()
+
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+    }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    cocoapods {
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        version = "1.0"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../iosApp/Podfile")
+        framework {
+            baseName = "shared"
+        }
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                //put your multiplatform dependencies here
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.ktor.client.auth)
+                implementation(libs.ktor.client.cio)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.serialization)
+                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.ktor.client.logging)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation("app.softwork:kotlinx-uuid-core:0.0.22")
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
+    }
+}
+
+android {
+    namespace = "com.telnyx.janusmessagesdk"
+    compileSdk = 34
+    defaultConfig {
+        minSdk = 24
+    }
+}
+
+val publishArtifact = tasks.register("publishArtifact") {
+    dependsOn("publishToMavenLocal")
+}
+
+fun getVersionName(): String {
+    return "0.0.1-alpha" // Replace with version Name
+}
+
+fun getArtifactId(): String {
+    return "janus-message-sdk" // Replace with library name ID
+}
+publishing {
+    publications {
+
+        create<MavenPublication>("gpr") {
+            run {
+                groupId = "com.telnyx"
+                artifactId = this@Build_gradle.getArtifactId()
+                version = getVersionName()
+                artifact("$buildDir/outputs/aar/${this@Build_gradle.getArtifactId()}-${getVersionName()}-release.aar")
+                artifact(tasks["sourceJar"])
+            }
+            pom.withXml {
+                description = "A Kotlin Multiplatform library for Janus WebRTC Gateway"
+            }
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
+}
