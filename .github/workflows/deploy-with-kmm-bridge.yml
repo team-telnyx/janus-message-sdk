@@ -13,6 +13,8 @@ jobs:
     with:
       # Provide inputs here if the external workflow requires them
       versionBaseProperty: '0.0.3' # Required
+      jvmVersion: '17' # Optional
+      retainBuildBranch: 'true' # Optional
     secrets:
       # Provide secrets here if the external workflow requires them
       netrcUsername: ${{ secrets.NETRC_USERNAME }}
