@@ -14,6 +14,7 @@ jobs:
     with:
       # Provide inputs here if the external workflow requires them
       description: 'Deploying with KMM Bridge' # Optional
+      versionBaseProperty: '0.0.3' # Required
     secrets:
       # Provide secrets here if the external workflow requires them
       netrcUsername: ${{ secrets.NETRC_USERNAME }}
