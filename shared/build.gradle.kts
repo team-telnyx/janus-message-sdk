@@ -77,7 +77,7 @@ android {
 
 
 fun getVersionName(): String {
-    return "0.0.2-alpha" // Replace with version Name
+    return "0.0.3-alpha" // Replace with version Name
 }
 
 fun getArtifactId(): String {
