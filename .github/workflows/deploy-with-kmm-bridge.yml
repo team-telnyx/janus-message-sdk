@@ -12,7 +12,7 @@ jobs:
     uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildautoversion.yml@main
     with:
       # Provide inputs here if the external workflow requires them
-      versionBaseProperty: '0.0.3' # Required
+      versionBaseProperty: '1.0.0' # Required
       jvmVersion: '17' # Optional
       retainBuildBranch: true # Optional
     secrets:
