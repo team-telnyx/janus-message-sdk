@@ -103,7 +103,7 @@ jobs:
           cleanupMarkers: 'true'
 
       - name: Delete branch
-        if: (!false) && (!cancelled())
+        if: (!true) && (!cancelled())
         uses: touchlab/action-delete-branch@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

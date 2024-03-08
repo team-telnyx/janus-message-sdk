@@ -1,6 +1,6 @@
 {
   "name": "shared",
-  "version": "0.6",
+  "version": "0.6.1",
   "homepage": "Janus Message SDK to be used for both Android and iOS",
   "source": {
     "http": ""
@@ -8,7 +8,10 @@
   "authors": {
     "Telnyx": "cocoapods@telnyx.com"
   },
-  "license": "",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
   "summary": "Janus-message-sdk",
   "vendored_frameworks": "build/cocoapods/framework/shared.framework",
   "libraries": "c++",

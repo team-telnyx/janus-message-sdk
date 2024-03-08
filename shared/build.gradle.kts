@@ -10,7 +10,7 @@ plugins {
 kmmbridge {
     mavenPublishArtifacts()
     spm()
-    cocoapodsTrunk()
+    //cocoapodsTrunk()
     //etc
 }
 addGithubPackagesRepository()
@@ -34,10 +34,13 @@ kotlin {
 
 
     cocoapods {
+        name = "JanusMessageSDK"
         summary = "Janus-message-sdk"
         homepage = "Janus Message SDK to be used for both Android and iOS"
         version = "0.6"
+        license = "{ :type => 'MIT', :file => 'LICENSE' }"
         authors =  "{ 'Telnyx' => 'cocoapods@telnyx.com' }"
+        source = "{ :git => 'https://github.com/team-telnyx/janus-message-sdk.git', :tag => '#{spec.version}' }"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
         framework {

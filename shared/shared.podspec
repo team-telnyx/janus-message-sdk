@@ -1,10 +1,10 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'shared'
-    spec.version                  = '0.6'
+    spec.version                  = '0.6.1'
     spec.homepage                 = 'Janus Message SDK to be used for both Android and iOS'
     spec.source                   = { :http=> ''}
     spec.authors                  = { 'Telnyx' => 'cocoapods@telnyx.com' }
-    spec.license                  = ''
+    spec.license                  = { :type => 'MIT', :file => 'LICENSE' }
     spec.summary                  = 'Janus-message-sdk'
     spec.vendored_frameworks      = 'build/cocoapods/framework/shared.framework'
     spec.libraries                = 'c++'
