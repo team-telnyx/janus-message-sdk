@@ -89,7 +89,6 @@ fun getArtifactId(): String {
 tasks.register<Jar>(name = "sourceJar") {
     from(android.sourceSets["main"].java.srcDirs)
     archiveClassifier.set("sources")
-    dependsOn("classes")
 }
 
 
