@@ -1,13 +1,13 @@
 {
   "name": "shared",
-  "version": "1.0",
-  "homepage": "Link to the Shared Module homepage",
+  "version": "0.0.4",
+  "homepage": "Janus Message SDK to be used for both Android and iOS",
   "source": {
     "http": ""
   },
   "authors": "",
   "license": "",
-  "summary": "Some description for the Shared Module",
+  "summary": "Janus-message-sdk",
   "vendored_frameworks": "build/cocoapods/framework/shared.framework",
   "libraries": "c++",
   "platforms": {

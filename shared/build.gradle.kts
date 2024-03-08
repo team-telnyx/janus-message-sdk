@@ -31,10 +31,12 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+
+
     cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        version = "1.0"
+        summary = "Janus-message-sdk"
+        homepage = "Janus Message SDK to be used for both Android and iOS"
+        version = "0.0.4"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
         framework {
