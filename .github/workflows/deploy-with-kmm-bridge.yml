@@ -15,7 +15,6 @@ jobs:
       versionBaseProperty: 'versionBaseProperty' # Example version
       jvmVersion: '17' # Optional
       netrcMachine: 'maven.pkg.github.com'
-      module: 'JanusSdpClient'
       retainBuildBranch: true # Optional
     secrets:
       # Provide secrets here if the external workflow requires them
