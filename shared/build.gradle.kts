@@ -9,8 +9,7 @@ plugins {
 version = "0.6.3"
 
 kmmbridge {
-   // mavenPublishArtifacts()
-    manualVersions()
+    mavenPublishArtifacts()
     spm()
     cocoapodsTrunk()
     //etc
