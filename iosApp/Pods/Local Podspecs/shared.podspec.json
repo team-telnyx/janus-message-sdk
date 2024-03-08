@@ -1,7 +1,7 @@
 {
   "name": "shared",
-  "version": "0.6.1",
-  "homepage": "Janus Message SDK to be used for both Android and iOS",
+  "version": "0.6.2",
+  "homepage": "https://github.com/team-telnyx/janus-message-sdk",
   "source": {
     "http": ""
   },

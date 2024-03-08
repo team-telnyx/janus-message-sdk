@@ -35,9 +35,8 @@ kotlin {
 
 
     cocoapods {
-        name = "JanusMessageSDK"
         summary = "Janus-message-sdk"
-        homepage = "Janus Message SDK to be used for both Android and iOS"
+        homepage = "https://github.com/team-telnyx/janus-message-sdk"
         version = "0.6.2"
         license = "{ :type => 'MIT', :file => 'LICENSE' }"
         authors =  "{ 'Telnyx' => 'cocoapods@telnyx.com' }"
