@@ -9,7 +9,7 @@ plugins {
 version = "0.6.2"
 
 kmmbridge {
-    mavenPublishArtifacts()
+   // mavenPublishArtifacts()
     manualVersions()
     spm()
     cocoapodsTrunk()
@@ -85,7 +85,7 @@ android {
 
 
 fun getVersionName(): String {
-    return "0.0.4" // Replace with version Name
+    return version.toString() // Replace with version Name
 }
 
 fun getArtifactId(): String {
