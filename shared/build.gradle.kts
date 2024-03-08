@@ -6,9 +6,11 @@ plugins {
     id("co.touchlab.kmmbridge") version "0.5.2"
     id("maven-publish")
 }
+version = "0.6.1"
 
 kmmbridge {
     mavenPublishArtifacts()
+    manualVersions()
     spm()
     //cocoapodsTrunk()
     //etc
@@ -37,7 +39,7 @@ kotlin {
         name = "JanusMessageSDK"
         summary = "Janus-message-sdk"
         homepage = "Janus Message SDK to be used for both Android and iOS"
-        version = "0.6"
+        version = "0.6.1"
         license = "{ :type => 'MIT', :file => 'LICENSE' }"
         authors =  "{ 'Telnyx' => 'cocoapods@telnyx.com' }"
         source = "{ :git => 'https://github.com/team-telnyx/janus-message-sdk.git', :tag => '#{spec.version}' }"
