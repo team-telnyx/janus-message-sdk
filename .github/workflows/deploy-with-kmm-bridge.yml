@@ -5,19 +5,109 @@ on: [push, pull_request] # or any other event
 
 # Jobs :  https://github.com/touchlab/KMMBridgeGithubWorkflow/blob/main/.github/workflows/faktorybuildautoversion.yml
 
-jobs:
-  call-external-workflow:
-    permissions:
-      contents: write
-      packages: write
-    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildautoversion.yml@autoversion
-    with:
-      # Provide inputs here if the external workflow requires them
-      versionBaseProperty: versionBaseProperty # Example version
-      jvmVersion: 17 # Optional
-      retainBuildBranch: true # Optional
-    secrets:
-      # Provide secrets here if the external workflow requires them
-      netrcUsername: ${{ secrets.NETRC_USERNAME }}
-      netrcPassword: ${{ secrets.NETRC_PASSWORD }}
 
+
+jobs:
+  kmmbridgepublish:
+    concurrency: "kmmbridgepublish-${{ github.repository }}"
+    runs-on: macos-12
+    steps:
+      - name: Checkout the repo with tags
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - uses: touchlab/read-property@0.1
+        id: versionBasePropertyValue
+        with:
+          file: ./gradle.properties
+          property: versionBaseProperty
+
+      - name: Print versionBasePropertyValue
+        id: output
+        run: echo "${{ steps.versionBasePropertyValue.outputs.propVal }}"
+
+      - name: Touchlab Sample Sanity Check (Ignore this for your CI)
+        uses: touchlab/sample-group-sanity-check@0.2
+
+      - uses: touchlab/autoversion-nextversion@main
+        id: autoversion
+        with:
+          versionBase: ${{ steps.versionBasePropertyValue.outputs.propVal }}
+
+      - name: Print Next Version
+        id: outputversion
+        run: echo "${{ steps.autoversion.outputs.nextVersion }}"
+
+      - uses: touchlab/autoversion-tagmarker@main
+        id: autoversion-tagmarker
+        with:
+          nextVersion: ${{ steps.autoversion.outputs.nextVersion }}
+
+      - uses: touchlab/autoversion-buildbranch@main
+        id: autoversion-buildbranch
+        with:
+          buildBranch: "build-${{ steps.autoversion.outputs.nextVersion }}"
+
+      - name: Apply SSH Key
+        if: ${{ env.PODSPEC_SSH_KEY_EXISTS == 'true' }}
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.PODSPEC_SSH_KEY }}
+
+      - uses: extractions/netrc@v1
+        with:
+          machine:  maven.pkg.github.com
+          username: ${{ secrets.netrcUsername != '' && secrets.netrcUsername || 'cirunner' }}
+          password: ${{ secrets.netrcPassword != '' && secrets.netrcPassword || secrets.GITHUB_TOKEN  }}
+
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: 17
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Cache build tooling
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.konan
+          key: ${{ runner.os }}-v4-${{ hashFiles('*.gradle.kts') }}
+
+      - name: Build Main
+        run: ./gradlew ${{ env.MODULE }}kmmBridgePublish -PAUTO_VERSION=${{ steps.autoversion.outputs.nextVersion }} -PENABLE_PUBLISHING=true -PGITHUB_PUBLISH_TOKEN=${{ secrets.GITHUB_TOKEN }} -PGITHUB_REPO=${{ github.repository }} ${{ secrets.gradle_params }} --no-daemon --stacktrace
+        env:
+          GRADLE_OPTS: -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx3g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=512m"
+
+      - uses: touchlab/autoversion-finishrelease@main
+        id: autoversion-finishrelease
+        with:
+          commitMessage: "KMM SPM package release for ${{ steps.autoversion.outputs.nextVersion }}"
+          tagMessage: "KMM release version ${{ steps.autoversion.outputs.nextVersion }}"
+          tagVersion: ${{ steps.autoversion.outputs.nextVersion }}
+          branchName: "build-${{ steps.autoversion.outputs.nextVersion }}"
+
+      - uses: touchlab/autoversion-tagmarker@main
+        id: autoversion-tagmarker-cleanup
+        with:
+          nextVersion: ${{ steps.autoversion.outputs.nextVersion }}
+          cleanupMarkers: 'true'
+
+      - name: Delete branch
+        if: (!false) && (!cancelled())
+        uses: touchlab/action-delete-branch@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branches: "build-${{ steps.autoversion.outputs.nextVersion }}"
+        env:
+          PODSPEC_SSH_KEY_EXISTS: ${{ secrets.PODSPEC_SSH_KEY != ''}}
+          MODULE: ${{ inputs.module != '' && format('{0}:',inputs.module) || '' }}
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        secrets:
+            PODSPEC_SSH_KEY: ${{ secrets.PODSPEC_SSH_KEY }}
+            netrcUsername: ${{ secrets.netrcUsername }}
+            netrcPassword: ${{ secrets.netrcPassword }}
