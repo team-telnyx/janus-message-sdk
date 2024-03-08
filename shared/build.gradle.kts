@@ -36,7 +36,7 @@ kotlin {
     cocoapods {
         summary = "Janus-message-sdk"
         homepage = "Janus Message SDK to be used for both Android and iOS"
-        version = "0.0.5"
+        version = "0.6"
         authors =  "{ 'Telnyx' => 'cocoapods@telnyx.com' }"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")

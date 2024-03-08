@@ -16,7 +16,6 @@ jobs:
       versionBaseProperty: versionBaseProperty # Example version
       jvmVersion: 17 # Optional
       retainBuildBranch: true # Optional
-      publishTask: kmmBridgePublish publishKotlinMultiplatformPublicationToGitHubPackagesRepository publishAndroidDebugPublicationToGitHubPackagesRepository publishAndroidReleasePublicationToGitHubPackagesRepository
     secrets:
       # Provide secrets here if the external workflow requires them
       netrcUsername: ${{ secrets.NETRC_USERNAME }}

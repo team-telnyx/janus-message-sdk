@@ -1,6 +1,6 @@
 {
   "name": "shared",
-  "version": "0.0.5",
+  "version": "0.6",
   "homepage": "Janus Message SDK to be used for both Android and iOS",
   "source": {
     "http": ""

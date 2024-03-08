@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'shared'
-    spec.version                  = '0.0.5'
+    spec.version                  = '0.6'
     spec.homepage                 = 'Janus Message SDK to be used for both Android and iOS'
     spec.source                   = { :http=> ''}
     spec.authors                  = { 'Telnyx' => 'cocoapods@telnyx.com' }
