@@ -4,18 +4,19 @@ name: Deploy WIth KMM Bridge Github Workflow
 on: [push, pull_request] # or any other event
 
 # Jobs :  https://github.com/touchlab/KMMBridgeGithubWorkflow/blob/main/.github/workflows/faktorybuildautoversion.yml
-permissions: write-all
-
 
 jobs:
   call-external-workflow:
-    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildautoversion.yml@main
+    permissions:
+      contents: write
+      packages: write
+    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildautoversion.yml@autoversion
     with:
       # Provide inputs here if the external workflow requires them
-      versionBaseProperty: 'versionBaseProperty' # Example version
-      jvmVersion: '17' # Optional
-      netrcMachine: 'maven.pkg.github.com'
+      versionBaseProperty: versionBaseProperty # Example version
+      jvmVersion: 17 # Optional
       retainBuildBranch: true # Optional
+      publishTask: kmmBridgePublish publishKotlinMultiplatformPublicationToGitHubPackagesRepository publishAndroidDebugPublicationToGitHubPackagesRepository publishAndroidReleasePublicationToGitHubPackagesRepository
     secrets:
       # Provide secrets here if the external workflow requires them
       netrcUsername: ${{ secrets.NETRC_USERNAME }}
