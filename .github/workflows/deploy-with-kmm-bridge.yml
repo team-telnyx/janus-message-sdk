@@ -78,6 +78,11 @@ jobs:
             ~/.konan
           key: ${{ runner.os }}-v4-${{ hashFiles('*.gradle.kts') }}
 
+      - name: Setup CocoaPods trunk authentication
+        run: |
+          echo -e "machine trunk.cocoapods.org\n  login ${{ secrets.COCOAPODS_EMAIL }}\n  password ${{ secrets.COCOAPODS_TRUNK_TOKEN }}" > ~/.netrc
+
+
       - name: Build Main
         run: ./gradlew ${{ env.MODULE }}kmmBridgePublish -PAUTO_VERSION=${{ steps.autoversion.outputs.nextVersion }} -PENABLE_PUBLISHING=true -PGITHUB_PUBLISH_TOKEN=${{ secrets.GITHUB_TOKEN }} -PGITHUB_REPO=${{ github.repository }} ${{ secrets.gradle_params }} --no-daemon --stacktrace
         env:
@@ -107,6 +112,7 @@ jobs:
           PODSPEC_SSH_KEY_EXISTS: ${{ secrets.PODSPEC_SSH_KEY != ''}}
           MODULE: ${{ inputs.module != '' && format('{0}:',inputs.module) || '' }}
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+          COCOAPODS_EMAIL: ${{ secrets.COCOAPODS_EMAIL }}
           PODSPEC_SSH_KEY: ${{ secrets.PODSPEC_SSH_KEY }}
           netrcUsername: ${{ secrets.netrcUsername }}
           netrcPassword: ${{ secrets.netrcPassword }}
