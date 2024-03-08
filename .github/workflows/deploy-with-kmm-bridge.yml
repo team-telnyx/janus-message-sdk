@@ -19,3 +19,5 @@ jobs:
       # Provide secrets here if the external workflow requires them
       netrcUsername: ${{ secrets.NETRC_USERNAME }}
       netrcPassword: ${{ secrets.NETRC_PASSWORD }}
+    env:
+      COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
