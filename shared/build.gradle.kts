@@ -6,7 +6,7 @@ plugins {
     id("co.touchlab.kmmbridge") version "0.5.2"
     id("maven-publish")
 }
-version = "0.6.2"
+version = "0.6.3"
 
 kmmbridge {
    // mavenPublishArtifacts()
