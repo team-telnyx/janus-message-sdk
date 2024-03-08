@@ -6,12 +6,12 @@ plugins {
     id("co.touchlab.kmmbridge") version "0.5.2"
     id("maven-publish")
 }
-version = "0.7.2"
+version = "0.7.3"
 
 kmmbridge {
     mavenPublishArtifacts()
     spm()
-    cocoapodsTrunk()
+    cocoapods("git@github.com:team-telnyx/Podspecs-Janus-Message-sdk.git")
     //etc
 }
 addGithubPackagesRepository()
