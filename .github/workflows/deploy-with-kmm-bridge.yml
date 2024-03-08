@@ -36,7 +36,7 @@ jobs:
           property: versionBaseProperty # Adjust this to your actual property name in gradle.properties
 
       - name: Print versionBasePropertyValue
-        run: echo "Version Base Property Value: ${{ steps.read_property.outputs.propVal }}"
+        run: echo "Version Base Property Value ${{ steps.read_property.outputs.propVal }}"
 
       - name: Setup Java
         uses: actions/setup-java@v2
