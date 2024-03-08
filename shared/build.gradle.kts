@@ -6,7 +6,7 @@ plugins {
     id("co.touchlab.kmmbridge") version "0.5.2"
     id("maven-publish")
 }
-version = "0.6.3"
+version = "0.6.4"
 
 kmmbridge {
     mavenPublishArtifacts()
@@ -36,6 +36,7 @@ kotlin {
 
     cocoapods {
         summary = "Janus-message-sdk"
+        name = "JanusMessageSDK"
         homepage = "https://github.com/team-telnyx/janus-message-sdk"
         version = "0.6.2"
         license = "{ :type => 'MIT', :file => 'LICENSE' }"

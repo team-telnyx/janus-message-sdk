@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-    spec.name                     = 'shared'
+    spec.name                     = 'JanusMessageSDK'
     spec.version                  = '0.6.2'
     spec.homepage                 = 'https://github.com/team-telnyx/janus-message-sdk'
     spec.source                   = { :http=> ''}
@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
                 
     spec.script_phases = [
         {
-            :name => 'Build shared',
+            :name => 'Build JanusMessageSDK',
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT
