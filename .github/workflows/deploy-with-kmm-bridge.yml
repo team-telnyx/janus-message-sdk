@@ -12,8 +12,10 @@ jobs:
     uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildautoversion.yml@main
     with:
       # Provide inputs here if the external workflow requires them
-      versionBaseProperty: "0.0.5" # Required
+      versionBaseProperty: '0.0.4' # Example version
       jvmVersion: '17' # Optional
+      netrcMachine: 'maven.pkg.github.com'
+      module: 'JanusSdpClient'
       retainBuildBranch: true # Optional
     secrets:
       # Provide secrets here if the external workflow requires them
