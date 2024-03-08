@@ -1,24 +1,67 @@
-name: Deploy WIth KMM Bridge Github Workflow
 
 
-on: [push, pull_request] # or any other event
 
 # Jobs :  https://github.com/touchlab/KMMBridgeGithubWorkflow/blob/main/.github/workflows/faktorybuildautoversion.yml
+
+
+name: Deploy WIth KMM Bridge Github Workflow
+
 permissions: write-all
 
+on:
+  push:
+    branches:
+      - main
+    # You can adjust the trigger as needed. This is just an example that will run the workflow on pushes to the main branch.
+  # Remove the workflow_call section if you're not planning to call this workflow externally anymore.
 
 jobs:
-  call-external-workflow:
-    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildautoversion.yml@main
-    with:
-      # Provide inputs here if the external workflow requires them
-      versionBaseProperty: '0.0.4' # Example version
-      jvmVersion: '17' # Optional
-      netrcMachine: 'maven.pkg.github.com'
-      module: 'JanusSdpClient'
-      retainBuildBranch: true # Optional
-    secrets:
-      # Provide secrets here if the external workflow requires them
-      netrcUsername: ${{ secrets.NETRC_USERNAME }}
-      netrcPassword: ${{ secrets.NETRC_PASSWORD }}
+  kmmbridgepublish:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-12] # You can expand this matrix if needed
+    steps:
+      - name: Checkout the repo with tags
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
+      - name: Read versionBaseProperty from gradle.properties
+        id: read_property
+        uses: touchlab/read-property@0.1
+        with:
+          file: ./gradle.properties
+          property: versionBaseProperty # Adjust this to your actual property name in gradle.properties
+
+      - name: Print versionBasePropertyValue
+        run: echo "Version Base Property Value: ${{ steps.read_property.outputs.propVal }}"
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11' # Use matrix or input if you want to support multiple versions
+
+      - name: Cache Gradle and Kotlin Native dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Run Publish Task
+        run: ./gradlew publish -PversionBase=${{ steps.read_property.outputs.propVal }}
+        # Customize the gradle command according to your project's needs.
+        env:
+          JAVA_OPTS: -Xmx3g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=512m
+          # Add other environment variables here
+
+      # Add any other steps required for your publishing logic here.
