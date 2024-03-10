@@ -108,7 +108,7 @@ jobs:
             git config user.name "${{ github.actor }}"
             git config user.email "${{ github.actor }}@users.noreply.github.com"
             git tag -a ${{ steps.autoversion.outputs.nextVersion }} -m "Release version ${{ steps.autoversion.outputs.nextVersion }}"
-            git push origin v1.0.0
+            git push origin ${{ steps.autoversion.outputs.nextVersion }}
 
       - name: Create Release
         id: create_release
