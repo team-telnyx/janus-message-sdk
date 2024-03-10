@@ -37,7 +37,7 @@ kotlin {
         version = "0.7.2"
         license = "{ :type => 'MIT', :file => 'LICENSE' }"
         authors =  "{ 'Telnyx' => 'cocoapods@telnyx.com' }"
-        source = "{ :git => 'https://github.com/team-telnyx/janus-message-sdk.git', :tag => '#{spec.version}' }"
+        source = "{ :http => 'https://github.com/team-telnyx/janus-message-sdk/releases/download/0.7.10/JanusMessageSdk.xcframework.zip', :type => 'zip' }"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
         framework {

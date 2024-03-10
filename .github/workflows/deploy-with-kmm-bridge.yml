@@ -101,7 +101,7 @@ jobs:
 
 
       - name: Zip XCFramework
-        run: zip -r ${{ steps.autoversion.outputs.nextVersion }}.zip /Users/runner/work/janus-message-sdk/janus-message-sdk/shared/build/cocoapods/publish/release
+        run: zip -r JanusMessageSdk.xcframework.zip /Users/runner/work/janus-message-sdk/janus-message-sdk/shared/build/cocoapods/publish/release
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
@@ -130,8 +130,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ steps.autoversion.outputs.nextVersion }}.zip
-          asset_name: ${{ steps.autoversion.outputs.nextVersion }}.zip
+          asset_path: JanusMessageSdk.xcframework.zip
+          asset_name: JanusMessageSdk.xcframework.zip
           asset_content_type: application/zip
 
 
