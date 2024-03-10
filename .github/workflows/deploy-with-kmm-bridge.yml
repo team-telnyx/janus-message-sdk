@@ -86,7 +86,7 @@ jobs:
       - name: Zip XCFramework
         run: |
           cd /Users/runner/work/janus-message-sdk/janus-message-sdk/shared/build/cocoapods/publish/release/
-          zip -r  ${{ github.workspace }}/JanusMessageSdk.xcframework.zip shared.xcframework
+          zip -r  ${{ github.workspace }}/JanusMessageSdk.xcframework.zip JanusMessageSDK.xcframework
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
