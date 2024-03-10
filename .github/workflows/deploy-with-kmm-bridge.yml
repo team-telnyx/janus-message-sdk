@@ -99,8 +99,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-            name: ${steps.autoversion.outputs.nextVersion}
-            path: ${steps.autoversion.outputs.nextVersion}.zip
+            name: ${{ steps.autoversion.outputs.nextVersion }}
+            path: ${{ steps.autoversion.outputs.nextVersion }}.zip
 
         env:
           PODSPEC_SSH_KEY_EXISTS: ${{ secrets.PODSPEC_SSH_KEY != ''}}
