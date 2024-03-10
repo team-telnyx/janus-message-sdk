@@ -1,7 +1,13 @@
 name: Deploy WIth KMM Bridge Github Workflow
 
 
-on: [push, pull_request] # or any other event
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main # or any other event
 
 # Jobs :  https://github.com/touchlab/KMMBridgeGithubWorkflow/blob/main/.github/workflows/faktorybuildautoversion.yml
 
@@ -113,6 +119,8 @@ jobs:
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.autoversion.outputs.nextVersion }}
           release_name: Release version ${{ steps.autoversion.outputs.nextVersion }}
@@ -132,6 +140,7 @@ jobs:
           MODULE: ${{ inputs.module != '' && format('{0}:',inputs.module) || '' }}
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
           COCOAPODS_EMAIL: ${{ secrets.COCOAPODS_EMAIL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PODSPEC_SSH_KEY: ${{ secrets.PODSPEC_SSH_KEY }}
           netrcUsername: ${{ secrets.netrcUsername }}
           netrcPassword: ${{ secrets.netrcPassword }}
