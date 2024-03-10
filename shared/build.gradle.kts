@@ -1,12 +1,22 @@
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     kotlin("plugin.serialization") version "1.9.22"
+    id("co.touchlab.kmmbridge") version "0.5.2"
     id("maven-publish")
 }
 version = "0.7.3"
 
+kmmbridge {
+    mavenPublishArtifacts()
+    spm()
+    //cocoapodsTrunk()
+    //etc
+}
 
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -91,6 +101,58 @@ tasks.register<Jar>(name = "sourceJar") {
     from(android.sourceSets["main"].java.srcDirs)
     archiveClassifier.set("sources")
 }
+val podSpecFile =
+    "/Users/runner/work/janus-message-sdk/janus-message-sdk/shared/build/cocoapods/publish/release/JanusMessageSDK.podspec"
+
+ project.tasks.register("pushRemotePodspec") {
+   // group = co.touchlab.faktory.TASK_GROUP_NAME
+
+    inputs.files(podSpecFile)
+
+    @Suppress("ObjectLiteralToLambda")
+    doLast(object : Action<Task>{
+        override fun execute(t: Task) {
+            val extras = mutableListOf<String>()
+
+            extras.add("--allow-warnings")
+
+
+            project.procRunFailLog("pod", "trunk", "push", podSpecFile, *extras.toTypedArray())
+        }
+    })
+}
+
+fun Project.procRunFailLog(vararg params: String):List<String>{
+    val output = mutableListOf<String>()
+    try {
+        logger.info("Project.procRunFailLog: ${params.joinToString(" ")}")
+        procRun(*params) { line, _ -> output.add(line) }
+    } catch (e: Exception) {
+        output.forEach { logger.error("error: $it") }
+        throw e
+    }
+    return output
+}
+ fun procRun(vararg params: String, processLines: (String, Int) -> Unit) {
+    val process = ProcessBuilder(*params)
+        .redirectErrorStream(true)
+        .start()
+
+    val streamReader = InputStreamReader(process.inputStream)
+    val bufferedReader = BufferedReader(streamReader)
+    var lineCount = 1
+
+    bufferedReader.forEachLine { line ->
+        processLines(line, lineCount)
+        lineCount++
+    }
+
+    bufferedReader.close()
+    val returnValue = process.waitFor()
+    if(returnValue != 0)
+        throw GradleException("Process failed: ${params.joinToString(" ")}")
+}
+
 
 
 publishing {

@@ -106,8 +106,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-            name: ${{ steps.autoversion.outputs.nextVersion }}
-            path: ${{ steps.autoversion.outputs.nextVersion }}.zip
+            name: JanusMessageSdk.xcframework
+            path:  JanusMessageSdk.xcframework.zip
 
       - name: Create Tag
         run: |
@@ -133,6 +133,9 @@ jobs:
           asset_path: JanusMessageSdk.xcframework.zip
           asset_name: JanusMessageSdk.xcframework.zip
           asset_content_type: application/zip
+
+      - name: Push to CocoaPods
+        run: ./gradlew pushRemotePodspec
 
 
         env:
