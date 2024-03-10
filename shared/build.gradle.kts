@@ -9,7 +9,7 @@ plugins {
     id("co.touchlab.kmmbridge") version "0.5.2"
     id("maven-publish")
 }
-version = "0.7.3"
+version = "0.7.15"
 
 kmmbridge {
     mavenPublishArtifacts()
@@ -44,10 +44,10 @@ kotlin {
         summary = "Janus-message-sdk"
         name = "JanusMessageSDK"
         homepage = "https://github.com/team-telnyx/janus-message-sdk"
-        version = "0.7.12"
+        version = version.toString()
         license = "{ :type => 'MIT', :file => 'LICENSE' }"
         authors =  "{ 'Telnyx' => 'cocoapods@telnyx.com' }"
-        source = "{ :http => 'https://github.com/team-telnyx/janus-message-sdk/releases/download/0.7.14/JanusMessageSdk.xcframework.zip', :type => 'zip' }"
+        source = "{ :http => 'https://github.com/team-telnyx/janus-message-sdk/releases/download/${version}/JanusMessageSdk.xcframework.zip', :type => 'zip' }"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
         framework {
