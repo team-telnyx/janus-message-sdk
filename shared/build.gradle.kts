@@ -44,7 +44,7 @@ kotlin {
         summary = "Janus-message-sdk"
         name = "JanusMessageSDK"
         homepage = "https://github.com/team-telnyx/janus-message-sdk"
-        version = "0.7.2"
+        version = "0.7.12"
         license = "{ :type => 'MIT', :file => 'LICENSE' }"
         authors =  "{ 'Telnyx' => 'cocoapods@telnyx.com' }"
         source = "{ :http => 'https://github.com/team-telnyx/janus-message-sdk/releases/download/0.7.10/JanusMessageSdk.xcframework.zip', :type => 'zip' }"
