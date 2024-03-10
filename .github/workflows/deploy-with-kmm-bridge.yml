@@ -93,18 +93,15 @@ jobs:
         run: ./gradlew podPublishReleaseXCFramework
 
 
-      - uses: touchlab/autoversion-tagmarker@main
-        id: autoversion-tagmarker-cleanup
-        with:
-          nextVersion: ${{ steps.autoversion.outputs.nextVersion }}
-          cleanupMarkers: 'true'
 
-      - name: Delete branch
-        if: (!true) && (!cancelled())
-        uses: touchlab/action-delete-branch@v3
+      - name: Zip XCFramework
+        run: zip -r ${steps.autoversion.outputs.nextVersion}.zip /Users/runner/work/janus-message-sdk/janus-message-sdk/shared/build/cocoapods/publish/release
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branches: "build-${{ steps.autoversion.outputs.nextVersion }}"
+            name: ${steps.autoversion.outputs.nextVersion}
+            path: ${steps.autoversion.outputs.nextVersion}.zip
+
         env:
           PODSPEC_SSH_KEY_EXISTS: ${{ secrets.PODSPEC_SSH_KEY != ''}}
           MODULE: ${{ inputs.module != '' && format('{0}:',inputs.module) || '' }}
