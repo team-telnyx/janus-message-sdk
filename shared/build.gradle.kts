@@ -3,25 +3,21 @@ plugins {
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
     kotlin("plugin.serialization") version "1.9.22"
-    id("co.touchlab.kmmbridge") version "0.5.2"
     id("maven-publish")
 }
 version = "0.7.3"
 
-kmmbridge {
-    mavenPublishArtifacts()
-    spm()
-    cocoapods("git@github.com:team-telnyx/Podspecs-Janus-Message-sdk.git")
-    //etc
-}
-addGithubPackagesRepository()
 
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     targetHierarchy.default()
 
+    withSourcesJar(publish = true)
+
+
     androidTarget {
+        publishLibraryVariants("release")
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
@@ -107,7 +103,7 @@ publishing {
                 version = getVersionName()
                 //artifact("$buildDir/outputs/aar/${this@Build_gradle.getArtifactId()}-${getVersionName()}-release.aar")
                 artifact(tasks["sourceJar"])
-                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+                //artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
 
             }
             pom {

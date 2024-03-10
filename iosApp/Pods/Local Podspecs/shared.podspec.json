@@ -1,6 +1,6 @@
 {
   "name": "shared",
-  "version": "0.6.2",
+  "version": "0.7.2",
   "homepage": "https://github.com/team-telnyx/janus-message-sdk",
   "source": {
     "http": ""

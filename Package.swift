@@ -2,8 +2,8 @@
 import PackageDescription
 
 // BEGIN KMMBRIDGE VARIABLES BLOCK (do not edit)
-let remoteKotlinUrl = "https://maven.pkg.github.com/team-telnyx/janus-message-sdk/JanusMessageSdk/shared-kmmbridge/0.7.1/shared-kmmbridge-0.7.1.zip"
-let remoteKotlinChecksum = "dd7e8479ef74fdde0627dcd7f6ccb50bdfac4275d280f1cbdb30717a5f17e0e6"
+let remoteKotlinUrl = "file:/Users/isaacakakpo/.m2/repository//JanusMessageSdk/shared-kmmbridge/0.7.3/shared-kmmbridge-0.7.3.zip"
+let remoteKotlinChecksum = "f71fe465485bfbd62a2bcc7eb68b49f3c3f9a3b0167ade4dee4acbb891ad9415"
 let packageName = "shared"
 // END KMMBRIDGE BLOCK
 
