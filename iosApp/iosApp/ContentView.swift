@@ -1,5 +1,5 @@
 import SwiftUI
-import shared
+import JanusMessageSDK
 
 struct ContentView: View {
 	let greet = Greeting().greet()
