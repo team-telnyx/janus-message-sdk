@@ -1,13 +1,7 @@
 name: Deploy WIth KMM Bridge Github Workflow
 
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main # or any other event
+on: [push, pull_request] # or any other event
 
 # Jobs :  https://github.com/touchlab/KMMBridgeGithubWorkflow/blob/main/.github/workflows/faktorybuildautoversion.yml
 
@@ -34,8 +28,6 @@ jobs:
         id: output
         run: echo "${{ steps.versionBasePropertyValue.outputs.propVal }}"
 
-      - name: Touchlab Sample Sanity Check (Ignore this for your CI)
-        uses: touchlab/sample-group-sanity-check@0.2
 
       - uses: touchlab/autoversion-nextversion@main
         id: autoversion
@@ -46,15 +38,6 @@ jobs:
         id: outputversion
         run: echo "${{ steps.autoversion.outputs.nextVersion }}"
 
-      - uses: touchlab/autoversion-tagmarker@main
-        id: autoversion-tagmarker
-        with:
-          nextVersion: ${{ steps.autoversion.outputs.nextVersion }}
-
-      - uses: touchlab/autoversion-buildbranch@main
-        id: autoversion-buildbranch
-        with:
-          buildBranch: "build-${{ steps.autoversion.outputs.nextVersion }}"
 
       - name: Apply SSH Key
         if: ${{ env.PODSPEC_SSH_KEY_EXISTS == 'true' }}
@@ -101,13 +84,15 @@ jobs:
 
 
       - name: Zip XCFramework
-        run: zip -r janus-message-sdk/shared/build/cocoapods/publish/release/shared.xcframework
+        run: |
+          cd /Users/runner/work/janus-message-sdk/janus-message-sdk/shared/build/cocoapods/publish/release/
+          zip -r  ${{ github.workspace }}/JanusMessageSdk.xcframework.zip JanusMessageSDK.xcframework
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
             name: JanusMessageSdk.xcframework
-            path:  JanusMessageSdk.xcframework.zip
+            path:   ${{ github.workspace }}/JanusMessageSdk.xcframework.zip
 
       - name: Create Tag
         run: |
@@ -132,7 +117,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: JanusMessageSdk.xcframework.zip
+          asset_path:   ${{ github.workspace }}/JanusMessageSdk.xcframework.zip
           asset_name: JanusMessageSdk.xcframework.zip
           asset_content_type: application/zip
 
