@@ -95,7 +95,8 @@ jobs:
 
 
       - name: Zip XCFramework
-        run: zip -r ${steps.autoversion.outputs.nextVersion}.zip /Users/runner/work/janus-message-sdk/janus-message-sdk/shared/build/cocoapods/publish/release
+        run: zip -r ${{ steps.autoversion.outputs.nextVersion }}.zip /Users/runner/work/janus-message-sdk/janus-message-sdk/shared/build/cocoapods/publish/release
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
