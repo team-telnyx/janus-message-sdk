@@ -38,7 +38,7 @@ kotlin {
     iosSimulatorArm64()
 
 
-    version = "0.7.17"
+    version = "0.7.18"
 
     cocoapods {
         summary = "Janus-message-sdk"
@@ -115,7 +115,7 @@ val podSpecFile =
             val extras = mutableListOf<String>()
 
             extras.add("--allow-warnings")
-
+            extras.add("--verbose")
 
             project.procRunFailLog("pod", "trunk", "push", podSpecFile, *extras.toTypedArray())
         }
