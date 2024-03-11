@@ -1,16 +1,16 @@
 PODS:
-  - JanusMessageSDK (0.7.20)
+  - JanusMessageSDK (0.7.24)
 
 DEPENDENCIES:
-  - JanusMessageSDK (= 0.7.20)
+  - JanusMessageSDK (from `../shared`)
 
-SPEC REPOS:
-  trunk:
-    - JanusMessageSDK
+EXTERNAL SOURCES:
+  JanusMessageSDK:
+    :path: "../shared"
 
 SPEC CHECKSUMS:
-  JanusMessageSDK: c85bdd5d7d482d34a05dfb90be1c1caa98a10805
+  JanusMessageSDK: e76862260037deafcfdfb13f6ac5b07754fd1de5
 
-PODFILE CHECKSUM: 90a9949468aca7f7507558aec9e95a8d60ae04af
+PODFILE CHECKSUM: f49c83502265f613b705206e564445714899ea9d
 
 COCOAPODS: 1.14.3

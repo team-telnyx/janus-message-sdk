@@ -1,10 +1,17 @@
 package com.telnyx.janusmessagesdk.janus
 
-enum class Janus(val value: String) {
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlin.reflect.KClass
+
+enum class Janus(val value: String)  {
+
     CREATE("create"),
     KEEP_ALIVE("keepalive"),
     SUCCESS("success"),
-    ATTACH("attach"),
+
     MESSAGE("message"),
     EVENT("event"),
+    ATTACH("attach")
 }
+

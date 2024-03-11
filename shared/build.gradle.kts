@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
-    kotlin("plugin.serialization") version "1.9.22"
+    kotlin("plugin.serialization") version "1.9.20"
     id("co.touchlab.kmmbridge") version "0.5.2"
     id("maven-publish")
 }
@@ -38,7 +38,7 @@ kotlin {
     iosSimulatorArm64()
 
 
-    version = "0.7.23"
+    version = "0.7.24"
 
     cocoapods {
         summary = "Janus-message-sdk"

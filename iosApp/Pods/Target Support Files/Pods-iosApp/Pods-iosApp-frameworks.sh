@@ -176,10 +176,10 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/JanusMessageSDK/JanusMessageSDK.framework"
+  install_framework "${PODS_ROOT}/../../shared/build/cocoapods/framework/JanusMessageSDK.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/JanusMessageSDK/JanusMessageSDK.framework"
+  install_framework "${PODS_ROOT}/../../shared/build/cocoapods/framework/JanusMessageSDK.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

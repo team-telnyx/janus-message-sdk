@@ -10,5 +10,12 @@ import Foundation
 import JanusMessageSDK
 
 func testJanus(){
+    //CreateTransaction(janus: String, transaction: <#T##String#>)
+    let createTransaction = CreateTransaction(janus: "kk", transaction: "String")
+    //let result = try! JanusUtils().encode(cls: createTransaction)
+    
+    print("Transaction => "  + createTransaction.default().transaction)
+    //JanusUtils.encode(createTransaction.default())
+
     
 }
