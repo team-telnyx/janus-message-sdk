@@ -9,7 +9,6 @@ plugins {
     id("co.touchlab.kmmbridge") version "0.5.2"
     id("maven-publish")
 }
-version = "0.7.15"
 
 kmmbridge {
     mavenPublishArtifacts()
@@ -39,19 +38,40 @@ kotlin {
     iosSimulatorArm64()
 
 
+    version = "0.7.21"
 
     cocoapods {
         summary = "Janus-message-sdk"
         name = "JanusMessageSDK"
         homepage = "https://github.com/team-telnyx/janus-message-sdk"
-        version = version.toString()
-        license = "{ :type => 'MIT', :file => 'LICENSE' }"
+        version = "${project.version}"
+        license = "{ :type => 'MIT', :text => 'MIT License\n" +
+                "\n" +
+                "Copyright (C) 2021 Telnyx, Inc. (https://www.telnyx.com)\n" +
+                "\n" +
+                "Permission is hereby granted, free of charge, to any person obtaining a copy\n" +
+                "of this software and associated documentation files (the \"Software\"), to deal\n" +
+                "in the Software without restriction, including without limitation the rights\n" +
+                "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n" +
+                "copies of the Software, and to permit persons to whom the Software is\n" +
+                "furnished to do so, subject to the following conditions:\n" +
+                "\n" +
+                "The above copyright notice and this permission notice shall be included in all\n" +
+                "copies or substantial portions of the Software.\n" +
+                "\n" +
+                "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n" +
+                "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n" +
+                "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n" +
+                "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n" +
+                "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n" +
+                "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n" +
+                "SOFTWARE.' }"
         authors =  "{ 'Telnyx' => 'cocoapods@telnyx.com' }"
-        source = "{ :http => 'https://github.com/team-telnyx/janus-message-sdk/releases/download/${version}/JanusMessageSdk.xcframework.zip', :type => 'zip' }"
+        source = "{ :http => 'https://github.com/team-telnyx/janus-message-sdk/releases/download/${project.version}/JanusMessageSdk.xcframework.zip', :type => 'zip' }"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
         framework {
-            baseName = "shared"
+            baseName = "JanusMessageSDK"
         }
     }
 
@@ -115,7 +135,7 @@ val podSpecFile =
             val extras = mutableListOf<String>()
 
             extras.add("--allow-warnings")
-
+            extras.add("--verbose")
 
             project.procRunFailLog("pod", "trunk", "push", podSpecFile, *extras.toTypedArray())
         }

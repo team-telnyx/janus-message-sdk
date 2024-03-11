@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import shared
+import JanusMessageSDK
 
 func testJanus(){
+    
 }
