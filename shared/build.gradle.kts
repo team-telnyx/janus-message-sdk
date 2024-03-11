@@ -38,7 +38,7 @@ kotlin {
     iosSimulatorArm64()
 
 
-    version = "0.7.22"
+    version = "0.7.23"
 
     cocoapods {
         summary = "Janus-message-sdk"
