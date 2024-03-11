@@ -14,7 +14,7 @@ func testJanus(){
     let createTransaction = CreateTransaction(janus: "kk", transaction: "String")
     //let result = try! JanusUtils().encode(cls: createTransaction)
     
-    print("Transaction => "  + createTransaction.default().transaction)
+    print("Transaction => "  + createTransaction.default().encode())
     //JanusUtils.encode(createTransaction.default())
 
     

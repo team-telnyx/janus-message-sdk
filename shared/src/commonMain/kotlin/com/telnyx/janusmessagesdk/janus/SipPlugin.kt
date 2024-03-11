@@ -9,11 +9,11 @@ import kotlinx.uuid.UUID
 
 @Serializable
 data class SipPlugin(
-    val janus: String = "attach",
+    val janus: String,
     @SerialName("opaque_id")
-    val opaqueId: String = "sip-${UUID().toString()}",
+    val opaqueId: String,
     @SerialName("plugin")
-    val plugin: String = "janus.plugin.sip",
+    val plugin: String,
     @SerialName("session_id")
     val sessionId: Long,
     @SerialName("transaction")

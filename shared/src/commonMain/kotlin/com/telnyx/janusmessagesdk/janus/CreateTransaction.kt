@@ -9,9 +9,9 @@ import kotlinx.uuid.UUID
 @Serializable
 data class CreateTransaction(
     @SerialName("janus")
-    val janus: String = Janus.CREATE.value,
+    val janus: String,
     @SerialName("transaction")
-    val transaction: String =  UUID().toString()
+    val transaction: String
 )  {
 
     //for ios objective-c does not support default values in parameters
