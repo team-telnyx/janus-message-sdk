@@ -11,10 +11,14 @@ import JanusMessageSDK
 
 func testJanus(){
     //CreateTransaction(janus: String, transaction: <#T##String#>)
-    let createTransaction = CreateTransaction(janus: "kk", transaction: "String")
+    let createTransaction = CreateTransaction(transaction: "").default()
     //let result = try! JanusUtils().encode(cls: createTransaction)
+    JanusKt.decodeJanusMessage(message: "") { method, base in
+        method == JanusMethod.attach
+        base as! CreateTransaction
+    }
+    print("Transaction => "  + createTransaction.encode() )
     
-    print("Transaction => "  + createTransaction.default().encode())
     //JanusUtils.encode(createTransaction.default())
 
     

@@ -25,7 +25,7 @@ data class SipPlugin(
 
     fun default(sessionId: Long): SipPlugin {
         return SipPlugin(
-            janus = Janus.ATTACH.name.lowercase(),
+            janus = JanusEvent.ATTACH.name.lowercase(),
             opaqueId = "sip-${UUID().toString()}",
             plugin = "janus.plugin.sip",
             sessionId = UUID().timeStamp,

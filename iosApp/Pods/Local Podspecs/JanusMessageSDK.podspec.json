@@ -1,0 +1,33 @@
+{
+  "name": "JanusMessageSDK",
+  "version": "0.7.24",
+  "homepage": "https://github.com/team-telnyx/janus-message-sdk",
+  "source": {
+    "http": ""
+  },
+  "authors": {
+    "Telnyx": "cocoapods@telnyx.com"
+  },
+  "license": {
+    "type": "MIT",
+    "text": "MIT License\n\nCopyright (C) 2021 Telnyx, Inc. (https://www.telnyx.com)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
+  },
+  "summary": "Janus-message-sdk",
+  "vendored_frameworks": "build/cocoapods/framework/JanusMessageSDK.framework",
+  "libraries": "c++",
+  "platforms": {
+    "ios": "14.1"
+  },
+  "pod_target_xcconfig": {
+    "KOTLIN_PROJECT_PATH": ":shared",
+    "PRODUCT_MODULE_NAME": "JanusMessageSDK"
+  },
+  "script_phases": [
+    {
+      "name": "Build JanusMessageSDK",
+      "execution_position": "before_compile",
+      "shell_path": "/bin/sh",
+      "script": "                if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n                  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=\"$CONFIGURATION\"\n"
+    }
+  ]
+}

@@ -3,26 +3,26 @@ package com.telnyx.janusmessagesdk.janus
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import kotlinx.uuid.UUID
+
 
 @Serializable
 data class CreateTransaction(
-    @SerialName("janus")
-    val janus: String,
     @SerialName("transaction")
     val transaction: String
-)  {
+) : JanusBase()  {
 
     //for ios objective-c does not support default values in parameters
-
     fun default(): CreateTransaction {
-        return CreateTransaction(janus = Janus.CREATE.name.lowercase(), transaction =  UUID().toString())
+        return CreateTransaction(transaction =  UUID().toString()).apply {
+            janus = JanusEvent.CREATE.value()
+        }
     }
 
     fun encode(): String {
-        return Json.encodeToString(this)
+        return json.encodeToString(serializer(),this)
     }
+
 }
 
 
@@ -34,14 +34,13 @@ data class Data(
 @Serializable
 data class TransactionSuccess(
     val data: Data,
-    val janus: String,
     @SerialName("transaction")
     val transaction: String,
     @SerialName("session_id")
     val sessionId: Long = 0L,
-){
+) : JanusBase(JanusEvent.SUCCESS.value()) {
     fun encode(): String {
-        return Json.encodeToString(this)
+        return json.encodeToString(this)
     }
 
 }
