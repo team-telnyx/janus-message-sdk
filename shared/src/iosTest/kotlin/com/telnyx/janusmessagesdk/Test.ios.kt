@@ -9,4 +9,9 @@ class IosGreetingTest {
     fun testExample() {
         assertTrue(Greeting().greet().contains("iOS"), "Check iOS is mentioned")
     }
+
+    @Test
+    fun testDisConnect() {
+
+    }
 }

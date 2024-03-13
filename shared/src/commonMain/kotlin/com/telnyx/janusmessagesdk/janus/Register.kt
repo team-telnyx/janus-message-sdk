@@ -49,7 +49,7 @@ data class Body(
 ) {
 
     init {
-        
+
     }
     fun default(login: String, loginToken: String,displayName: String, ): Body {
         return Body(
