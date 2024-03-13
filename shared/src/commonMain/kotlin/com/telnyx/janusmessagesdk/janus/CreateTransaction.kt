@@ -15,7 +15,7 @@ data class CreateTransaction(
     //for ios objective-c does not support default values in parameters
     fun default(): CreateTransaction {
         return CreateTransaction(transaction =  UUID().toString()).apply {
-            janus = JanusEvent.CREATE.value()
+            janus = Janus.CREATE.value
         }
     }
 
@@ -38,7 +38,7 @@ data class TransactionSuccess(
     val transaction: String,
     @SerialName("session_id")
     val sessionId: Long = 0L,
-) : JanusBase(JanusEvent.SUCCESS.value()) {
+) : JanusBase(Janus.SUCCESS.value) {
     fun encode(): String {
         return json.encodeToString(this)
     }

@@ -9,15 +9,31 @@ val json = Json {
     encodeDefaults = true
 }
 
-
-
-enum class JanusEvent(val value: String) {
-    CREATE("create"),
-    KEEP_ALIVE("keepalive"),
+enum class JanusEventType(val value: String){
     SUCCESS("success"),
+    ERROR("error"),
+    EVENT("event"),
+    MESSAGE("message")
+}
+
+enum class Janus(val value: String) {
+    ATTACH("attach"),
+    DETACH("detach"),
+    DESTROY("destroy"),
+    KEEP_ALIVE("keepalive"),
+    REGISTER("register"),
+    UNREGISTER("unregister"),
+    CREATE("create"),
     MESSAGE("message"),
     EVENT("event"),
-    ATTACH("attach"),
+    SUCCESS("success"),
+    ERROR("error")
+}
+
+enum class JanusEvent(val value: String) {
+    SEEION_CREATED("create"),
+    KEEP_ALIVE("keepalive"),
+    PLUGIN_ATTACHED("attach"),
     REGISTERED("registered"),
     REGISTERING("registering"),
     UNREGISTER("unregister"),
@@ -52,10 +68,10 @@ open class JanusBase(
 fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Unit) {
     val janusBase = json.decodeFromString<JanusBase>(message)
     when (janusBase.janus) {
-        JanusEvent.MESSAGE.value() -> {
+        JanusEventType.MESSAGE.value -> {
 
         }
-        JanusEvent.EVENT.value() -> {
+        JanusEventType.EVENT.value -> {
             val event = json.decodeFromString<EventBase>(message)
 
             if (event.plugindata?.data?.result?.event == JanusEvent.REGISTERING.value()) {
@@ -66,14 +82,14 @@ fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Uni
                 callback(JanusEvent.REGISTERED,registerSuccess)
             }
         }
-        JanusEvent.SUCCESS.value() -> {
-            val success = json.decodeFromString<TransactionSuccess>(message)
+        JanusEventType.SUCCESS.value -> {
+            val result = json.decodeFromString<TransactionSuccess>(message)
             if (message.contains("session_id")) {
                 //from attach plugin
-                callback(JanusEvent.ATTACH,success)
+                callback(JanusEvent.PLUGIN_ATTACHED,result)
 
             } else {
-                callback(JanusEvent.CREATE,success)
+                callback(JanusEvent.SEEION_CREATED,result)
             }
         }
     }

@@ -1,6 +1,5 @@
 package com.telnyx.janusmessagesdk.android
 
-import android.os.Bundle
 import com.telnyx.janusmessagesdk.janus.JanusEvent
 import com.telnyx.janusmessagesdk.janus.RegisterSuccess
 import com.telnyx.janusmessagesdk.janus.decodeJanusMessage
