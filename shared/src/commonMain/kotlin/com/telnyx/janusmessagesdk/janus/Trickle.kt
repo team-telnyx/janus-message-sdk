@@ -1,26 +1,41 @@
 package com.telnyx.janusmessagesdk.janus
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.uuid.UUID
 
-import com.google.gson.annotations.SerializedName
 
-data class TrickleIce(
-    @SerializedName("candidate")
+@Serializable
+data class Trickle(
+    @SerialName("candidate")
     val candidate: Candidate,
-    @SerializedName("handle_id")
-    val handleId: Long,
-    @SerializedName("janus")
-    val janus: String,
-    @SerializedName("session_id")
-    val sessionId: Long,
-    @SerializedName("transaction")
-    val transaction: String
-) {
-    data class Candidate(
-        @SerializedName("candidate")
-        val candidate: String,
-        @SerializedName("sdpMLineIndex")
-        val sdpMLineIndex: Int,
-        @SerializedName("sdpMid")
-        val sdpMid: String
-    )
+) : JanusBase()
+{
+
+    @SerialName("handle_id")
+    var handleId: Long = 0
+    @SerialName("session_id")
+    var sessionId: Long = 0
+    @SerialName("transaction")
+    var transaction: String   = ""
+
+    fun default(handleId: Long, sessionId: Long, candidate: Candidate): Trickle {
+        return Trickle(
+            candidate = candidate
+        ).apply {
+            this.handleId = handleId
+            this.sessionId = sessionId
+            this.transaction = UUID().toString()
+        }
+    }
 }
+
+@Serializable
+data class Candidate(
+    @SerialName("candidate")
+    val candidate: String,
+    @SerialName("sdpMLineIndex")
+    val sdpMLineIndex: Int,
+    @SerialName("sdpMid")
+    val sdpMid: String
+)

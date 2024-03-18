@@ -1,35 +1,71 @@
 package com.telnyx.janusmessagesdk.janus
 
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.uuid.UUID
 
 data class Call(
-    @SerializedName("body")
-    val body: Body,
-    @SerializedName("handle_id")
-    val handleId: Long,
-    @SerializedName("janus")
-    val janus: String,
-    @SerializedName("jsep")
-    val jsep: Jsep,
-    @SerializedName("session_id")
-    val sessionId: Long,
-    @SerializedName("transaction")
-    val transaction: String
-) {
-    data class Body(
-        @SerializedName("autoaccept_reinvites")
-        val autoacceptReinvites: Boolean,
-        @SerializedName("request")
-        val request: String,
-        @SerializedName("uri")
-        val uri: String
-    )
+    @SerialName("body")
+    val body: CallBody,
+    @SerialName("jsep")
+    val jsep: Jsep
+) : JanusBase() {
+    fun encode(): String {
+        return json.encodeToString(this)
+    }
 
-    data class Jsep(
-        @SerializedName("sdp")
-        val sdp: String,
-        @SerializedName("type")
-        val type: String
-    )
+    @SerialName("session_id")
+    var sessionId: Long = 0
+
+    @SerialName("transaction")
+    var transaction: String = ""
+
+    @SerialName("handle_id")
+    var handleId: Long = 0
+
+    fun default(handleId: Long, body: CallBody, jsep: Jsep, sessionId: Long): Call {
+        return Call(
+            body = body,
+            jsep = jsep
+        ).apply {
+            this.handleId = handleId
+            janus = Janus.MESSAGE.value
+            this.sessionId = sessionId
+            transaction = UUID().toString()
+        }
+    }
+}
+
+@Serializable
+data class Jsep(
+    @SerialName("sdp")
+    val sdp: String,
+    @SerialName("type")
+    val type: String
+)
+
+@Serializable
+class CallBody() {
+
+    @SerialName("request")
+    var request: String = ""
+
+    @SerialName("uri")
+    var uri: String = ""
+
+    @SerialName("autoaccept_reinvites")
+    var autoacceptReinvites: Boolean = false
+    fun default(userName: String): CallBody {
+        return CallBody().apply {
+            this.autoacceptReinvites = false
+            request = Janus.CALL.value
+            uri = "sip:$userName@sipdev.telnyx.com"
+        }
+    }
+
+    fun encode():String{
+        return json.encodeToString(this)
+    }
 }

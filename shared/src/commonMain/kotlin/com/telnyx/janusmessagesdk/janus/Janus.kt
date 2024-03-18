@@ -13,7 +13,8 @@ enum class JanusEventType(val value: String){
     SUCCESS("success"),
     ERROR("error"),
     EVENT("event"),
-    MESSAGE("message")
+    MESSAGE("message"),
+    ACK("ack")
 }
 
 enum class Janus(val value: String) {
@@ -25,14 +26,15 @@ enum class Janus(val value: String) {
     UNREGISTER("unregister"),
     CREATE("create"),
     MESSAGE("message"),
-    EVENT("event"),
     SUCCESS("success"),
-    ERROR("error")
+    ERROR("error"),
+    CALL("call"),
+
 }
 
 enum class JanusEvent(val value: String) {
-    SEEION_CREATED("create"),
-    KEEP_ALIVE("keepalive"),
+    SESION_CREATED("create"),
+    ACKNOWLEDGED("ack"),
     PLUGIN_ATTACHED("attach"),
     REGISTERED("registered"),
     REGISTERING("registering"),
@@ -89,8 +91,12 @@ fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Uni
                 callback(JanusEvent.PLUGIN_ATTACHED,result)
 
             } else {
-                callback(JanusEvent.SEEION_CREATED,result)
+                callback(JanusEvent.SESION_CREATED,result)
             }
+        }
+        JanusEventType.ACK.value -> {
+            val result = json.decodeFromString<TransactionSuccess>(message)
+            callback(JanusEvent.ACKNOWLEDGED,result)
         }
     }
 }

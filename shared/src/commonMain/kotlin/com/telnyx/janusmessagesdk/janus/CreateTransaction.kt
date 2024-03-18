@@ -36,8 +36,6 @@ data class TransactionSuccess(
     val data: Data,
     @SerialName("transaction")
     val transaction: String,
-    @SerialName("session_id")
-    val sessionId: Long = 0L,
 ) : JanusBase(Janus.SUCCESS.value) {
     fun encode(): String {
         return json.encodeToString(this)
