@@ -9,10 +9,9 @@
 /* Begin PBXAggregateTarget section */
 		9E98AF0285EE6E151BFB347BBDFA87AA /* JanusMessageSDK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = E48BC8E733D98D9F8479660BDF88C49D /* Build configuration list for PBXAggregateTarget "JanusMessageSDK" */;
+			buildConfigurationList = 8418DC5347BFC78685B6F774BBBEF4BD /* Build configuration list for PBXAggregateTarget "JanusMessageSDK" */;
 			buildPhases = (
-				59E3F74AB84BCC589194D01C075BEC40 /* [CP-User] Build JanusMessageSDK */,
-				2CDCF37E74D0A547B03FE49BB34B027C /* [CP] Copy dSYMs */,
+				81B1DFF2A70577838E03E117CB1F945B /* [CP-User] Build JanusMessageSDK */,
 			);
 			dependencies = (
 			);
@@ -38,21 +37,20 @@
 
 /* Begin PBXFileReference section */
 		0187F135D5F61750CD24C3E04B6E8B64 /* Pods-iosApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iosApp-frameworks.sh"; sourceTree = "<group>"; };
-		2E24B1E80C61297A8ECB5E0E1E4B75FF /* JanusMessageSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JanusMessageSDK.debug.xcconfig; sourceTree = "<group>"; };
 		3F64BADB16C311E9D09DAD0116F684F4 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
-		548AF5DA20BF0FA570A8B912F49777BA /* JanusMessageSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = JanusMessageSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		51C3F9DABE2C2839C2A8876BFE01B4D3 /* JanusMessageSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = JanusMessageSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		54DC7F9924F99FEE67A9AD3BEE09A10C /* Pods-iosApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iosApp-dummy.m"; sourceTree = "<group>"; };
-		56418A5BA58415FB5EC2357F6B44283F /* JanusMessageSDK-copy-dsyms.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "JanusMessageSDK-copy-dsyms.sh"; sourceTree = "<group>"; };
 		5AC974169B09D4545F741E9A2147610E /* Pods-iosApp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iosApp-Info.plist"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		8089A2A46E90D79CE0153F66973292DF /* JanusMessageSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JanusMessageSDK.release.xcconfig; sourceTree = "<group>"; };
 		8B524AABE529FB8A2D151B05321336E0 /* Pods-iosApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iosApp.modulemap"; sourceTree = "<group>"; };
 		9BB0B8B698D4C35D4F9A07EF70910170 /* Pods-iosApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iosApp-acknowledgements.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F1FFC8B10F4D7D4F37606E8959B3F29 /* Pods-iosApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iosApp-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9FECCB5AFF87D121F15BA01E683C7932 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
+		B08BB131EDE8CB1D1836391B7FF4058B /* JanusMessageSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JanusMessageSDK.framework; path = build/cocoapods/framework/JanusMessageSDK.framework; sourceTree = "<group>"; };
 		B097DD7534E741D5C41838011D755842 /* Pods-iosApp */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iosApp"; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7F8D5B7A0B614CC4D6F500EC063A9F7 /* JanusMessageSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JanusMessageSDK.framework; path = build/cocoapods/framework/JanusMessageSDK.framework; sourceTree = "<group>"; };
+		D8EF565F9663D570BB880F56612708D4 /* JanusMessageSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JanusMessageSDK.debug.xcconfig; sourceTree = "<group>"; };
+		DB73F574CA38544C884F93E3A7446A58 /* JanusMessageSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JanusMessageSDK.release.xcconfig; sourceTree = "<group>"; };
 		F87A626222A8D9B26448A9FEB04FD0DF /* Pods-iosApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iosApp-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +66,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06350BBA19B6FDA0EAE093F8F1508EF8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D8EF565F9663D570BB880F56612708D4 /* JanusMessageSDK.debug.xcconfig */,
+				DB73F574CA38544C884F93E3A7446A58 /* JanusMessageSDK.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../iosApp/Pods/Target Support Files/JanusMessageSDK";
+			sourceTree = "<group>";
+		};
 		11C970DEAE48C6D0282DFE54684F53F1 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +90,14 @@
 				B097DD7534E741D5C41838011D755842 /* Pods-iosApp */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		34EAEB7B00CE23E2E3898A368B397D0C /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				51C3F9DABE2C2839C2A8876BFE01B4D3 /* JanusMessageSDK.podspec */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		52A898E555C2DBD7D25A7E44754C3FC6 /* Pods-iosApp */ = {
@@ -112,31 +128,9 @@
 		6AB9CC0ABC8EF041FFE2D94BED1E1F15 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				995D11C0BF3DB631269601701C4A5B09 /* JanusMessageSDK */,
+				D596F5C14CBBB3805779EBC7159A6AAF /* JanusMessageSDK */,
 			);
 			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		8620CAFCBE5106A31D4B98D4713B0750 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				56418A5BA58415FB5EC2357F6B44283F /* JanusMessageSDK-copy-dsyms.sh */,
-				2E24B1E80C61297A8ECB5E0E1E4B75FF /* JanusMessageSDK.debug.xcconfig */,
-				8089A2A46E90D79CE0153F66973292DF /* JanusMessageSDK.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../iosApp/Pods/Target Support Files/JanusMessageSDK";
-			sourceTree = "<group>";
-		};
-		995D11C0BF3DB631269601701C4A5B09 /* JanusMessageSDK */ = {
-			isa = PBXGroup;
-			children = (
-				F5A82504C5B59585BB287380CDB36BE5 /* Frameworks */,
-				E4E84FFF75241407CF127646B693E695 /* Pod */,
-				8620CAFCBE5106A31D4B98D4713B0750 /* Support Files */,
-			);
-			name = JanusMessageSDK;
-			path = ../../shared;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -158,18 +152,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E4E84FFF75241407CF127646B693E695 /* Pod */ = {
+		D596F5C14CBBB3805779EBC7159A6AAF /* JanusMessageSDK */ = {
 			isa = PBXGroup;
 			children = (
-				548AF5DA20BF0FA570A8B912F49777BA /* JanusMessageSDK.podspec */,
+				E7CB1014ADB9D31931F7D0070624F240 /* Frameworks */,
+				34EAEB7B00CE23E2E3898A368B397D0C /* Pod */,
+				06350BBA19B6FDA0EAE093F8F1508EF8 /* Support Files */,
 			);
-			name = Pod;
+			name = JanusMessageSDK;
+			path = ../../shared;
 			sourceTree = "<group>";
 		};
-		F5A82504C5B59585BB287380CDB36BE5 /* Frameworks */ = {
+		E7CB1014ADB9D31931F7D0070624F240 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B7F8D5B7A0B614CC4D6F500EC063A9F7 /* JanusMessageSDK.framework */,
+				B08BB131EDE8CB1D1836391B7FF4058B /* JanusMessageSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,24 +243,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2CDCF37E74D0A547B03FE49BB34B027C /* [CP] Copy dSYMs */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/JanusMessageSDK/JanusMessageSDK-copy-dsyms-input-files.xcfilelist",
-			);
-			name = "[CP] Copy dSYMs";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/JanusMessageSDK/JanusMessageSDK-copy-dsyms-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/JanusMessageSDK/JanusMessageSDK-copy-dsyms.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		59E3F74AB84BCC589194D01C075BEC40 /* [CP-User] Build JanusMessageSDK */ = {
+		81B1DFF2A70577838E03E117CB1F945B /* [CP-User] Build JanusMessageSDK */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -296,23 +276,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		40F3B08EA3CA7B19B6CA2EB344F273BA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E24B1E80C61297A8ECB5E0E1E4B75FF /* JanusMessageSDK.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		593F10BFFA94DAC7D6E17FB8A7F32D72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -375,9 +338,9 @@
 			};
 			name = Release;
 		};
-		7EE29DC087F76E3DEC75AA2A91156F03 /* Release */ = {
+		8BA87444B21B948EE18CF6DD5E04C074 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8089A2A46E90D79CE0153F66973292DF /* JanusMessageSDK.release.xcconfig */;
+			baseConfigurationReference = DB73F574CA38544C884F93E3A7446A58 /* JanusMessageSDK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -534,6 +497,23 @@
 			};
 			name = Debug;
 		};
+		A7B55FA0F4762A70D6EBE1496040F571 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8EF565F9663D570BB880F56612708D4 /* JanusMessageSDK.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -555,11 +535,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E48BC8E733D98D9F8479660BDF88C49D /* Build configuration list for PBXAggregateTarget "JanusMessageSDK" */ = {
+		8418DC5347BFC78685B6F774BBBEF4BD /* Build configuration list for PBXAggregateTarget "JanusMessageSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				40F3B08EA3CA7B19B6CA2EB344F273BA /* Debug */,
-				7EE29DC087F76E3DEC75AA2A91156F03 /* Release */,
+				A7B55FA0F4762A70D6EBE1496040F571 /* Debug */,
+				8BA87444B21B948EE18CF6DD5E04C074 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

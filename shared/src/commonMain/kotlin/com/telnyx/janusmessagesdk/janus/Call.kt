@@ -6,7 +6,8 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.uuid.UUID
 
-data class Call(
+@Serializable
+data class Accept(
     @SerialName("body")
     val body: CallBody,
     @SerialName("jsep")
@@ -39,6 +40,44 @@ data class Call(
 }
 
 @Serializable
+data class Call(
+    @SerialName("body")
+    val body: CallBody,
+    @SerialName("jsep")
+    val jsep: Jsep
+) : JanusBase() {
+    fun encode(): String {
+        return json.encodeToString(this)
+    }
+
+    @SerialName("session_id")
+    var sessionId: Long = 0
+
+    @SerialName("autoaccept_reinvites")
+    var autoAcceptReInvites: Boolean = false
+
+
+    @SerialName("transaction")
+    var transaction: String = ""
+
+    @SerialName("handle_id")
+    var handleId: Long = 0
+
+    fun default(handleId: Long, body: CallBody, jsep: Jsep, sessionId: Long): Call {
+        return Call(
+            body = body,
+            jsep = jsep
+        ).apply {
+            this.handleId = handleId
+            janus = Janus.MESSAGE.value
+            this.sessionId = sessionId
+            transaction = UUID().toString()
+            autoAcceptReInvites = false
+        }
+    }
+}
+
+@Serializable
 data class Jsep(
     @SerialName("sdp")
     val sdp: String,
@@ -57,10 +96,10 @@ class CallBody() {
 
     @SerialName("autoaccept_reinvites")
     var autoacceptReinvites: Boolean = false
-    fun default(userName: String): CallBody {
+    fun default(userName: String,janusRequest:String = Janus.CALL.value): CallBody {
         return CallBody().apply {
             this.autoacceptReinvites = false
-            request = Janus.CALL.value
+            request = janusRequest
             uri = "sip:$userName@sipdev.telnyx.com"
         }
     }

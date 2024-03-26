@@ -76,12 +76,19 @@ fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Uni
         JanusEventType.EVENT.value -> {
             val event = json.decodeFromString<EventBase>(message)
 
-            if (event.plugindata?.data?.result?.event == JanusEvent.REGISTERING.value()) {
-                // Registering
-            } else if (event.plugindata?.data?.result?.event == JanusEvent.REGISTERED.value()) {
-                //callback(JanusMethod.EVENT,success)
-                val registerSuccess = json.decodeFromString<RegisterSuccess>(message)
-                callback(JanusEvent.REGISTERED,registerSuccess)
+            when (event.plugindata?.data?.result?.event) {
+                JanusEvent.REGISTERING.value() -> {
+                    // Registering
+                }
+                JanusEvent.REGISTERED.value() -> {
+                    //callback(JanusMethod.EVENT,success)
+                    val registerSuccess = json.decodeFromString<RegisterSuccess>(message)
+                    callback(JanusEvent.REGISTERED,registerSuccess)
+                }
+                JanusEvent.INCOMING_CALL.value() -> {
+                    val incomingCall = json.decodeFromString<OfferEvent>(message)
+                    callback(JanusEvent.INCOMING_CALL,incomingCall)
+                }
             }
         }
         JanusEventType.SUCCESS.value -> {

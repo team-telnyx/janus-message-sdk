@@ -61,13 +61,12 @@ android {
 dependencies {
     implementation(projects.shared)
     implementation("org.jacoco:org.jacoco.agent:0.8.11:runtime")
-    implementation("org.jacoco:jacoco-maven-plugin:0.8.11")
 
 
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
-    implementation("com.github.team-telnyx:telnyx-meet-android-sdk:0.3.1@aar") {
+    implementation("com.github.team-telnyx:telnyx-meet-android-sdk:0.3.2@aar") {
         isTransitive = true
     }
     implementation("androidx.core:core-ktx:+")
