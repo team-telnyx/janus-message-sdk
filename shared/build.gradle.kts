@@ -38,7 +38,7 @@ kotlin {
     iosSimulatorArm64()
 
 
-    version = "0.7.25"
+    version = "0.7.26"
 
     cocoapods {
         summary = "Janus-message-sdk"
@@ -89,6 +89,7 @@ kotlin {
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.ktor.client.content.negotiation)
                 implementation("app.softwork:kotlinx-uuid-core:0.0.22")
+                implementation("co.touchlab:kermit:2.0.3") //Add latest version
             }
         }
         val commonTest by getting {

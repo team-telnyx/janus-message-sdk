@@ -1,5 +1,6 @@
 package com.telnyx.janusmessagesdk.janus
 
+import co.touchlab.kermit.Logger
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -14,6 +15,7 @@ enum class JanusEventType(val value: String){
     ERROR("error"),
     EVENT("event"),
     MESSAGE("message"),
+    MEDIA("media"),
     ACK("ack")
 }
 
@@ -42,7 +44,7 @@ enum class JanusEvent(val value: String) {
     INCOMING_CALL("incomingcall"),
     CALLING("calling"),
     HANGUP("hangup"),
-    ANSWER("answer"),
+    ANSWER("accepted"),
     RINGING("ringing"),
     PROGRESS("progress"),
     DTMF("dtmf"),
@@ -73,6 +75,10 @@ fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Uni
         JanusEventType.MESSAGE.value -> {
 
         }
+        JanusEventType.MEDIA.value -> {
+            Logger.i { "Hello World" }
+
+        }
         JanusEventType.EVENT.value -> {
             val event = json.decodeFromString<EventBase>(message)
 
@@ -86,8 +92,16 @@ fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Uni
                     callback(JanusEvent.REGISTERED,registerSuccess)
                 }
                 JanusEvent.INCOMING_CALL.value() -> {
-                    val incomingCall = json.decodeFromString<OfferEvent>(message)
+                    val incomingCall = json.decodeFromString<JanusCallEvent>(message)
                     callback(JanusEvent.INCOMING_CALL,incomingCall)
+                }
+                JanusEvent.RINGING.value() -> {
+                    val ringing = json.decodeFromString<JanusCallEvent>(message)
+                    callback(JanusEvent.RINGING,ringing)
+                }
+                JanusEvent.ANSWER.value() -> {
+                    val answered = json.decodeFromString<JanusCallEvent>(message)
+                    callback(JanusEvent.ANSWER,answered)
                 }
             }
         }

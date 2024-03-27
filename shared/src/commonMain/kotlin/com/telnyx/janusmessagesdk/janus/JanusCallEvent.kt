@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.encodeToString
 import kotlinx.uuid.UUID
 
-data class OfferEvent(
+data class JanusCallEvent(
     @SerialName("body")
     val pluginData: PluginData,
     @SerialName("jsep")
