@@ -8,20 +8,21 @@ import kotlinx.uuid.UUID
 
 @Serializable
 data class KeepAliveAck(
-    @SerialName("session_id")
-    val sessionId: Long,
     @SerialName("transaction")
     val transaction: String
 ) : JanusBase() {
+
+    @SerialName("session_id")
+    var sessionId: Long = 0
     fun encode(): String {
         return json.encodeToString(this)
     }
 
     fun default(sessionId: Long): KeepAliveAck {
         return KeepAliveAck(
-            sessionId = sessionId,
             transaction = UUID().toString()
         ).apply {
+            this.sessionId = sessionId
             janus = Janus.KEEP_ALIVE.value
         }
     }
