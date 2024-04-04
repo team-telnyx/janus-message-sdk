@@ -28,7 +28,7 @@ data class SipPlugin(
             janus = Janus.ATTACH.name.lowercase(),
             opaqueId = "sip-${UUID().toString()}",
             plugin = "janus.plugin.sip",
-            sessionId = UUID().timeStamp,
+            sessionId = sessionId,
             transaction = UUID().toString()
         )
     }

@@ -69,6 +69,7 @@ open class JanusBase(
     }
 }
 
+@Throws(Exception::class)
 fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Unit) {
     val janusBase = json.decodeFromString<JanusBase>(message)
     Logger.i { "Raw Message : $message" }
