@@ -4,7 +4,7 @@ name: Deploy WIth KMM Bridge Github Workflow
 on:
   push:
     branches:
-      - develop
+      - main
 # Jobs :  https://github.com/touchlab/KMMBridgeGithubWorkflow/blob/main/.github/workflows/faktorybuildautoversion.yml
 
 
@@ -97,7 +97,7 @@ jobs:
             path:   ${{ github.workspace }}/JanusMessageSdk.xcframework.zip
 
       - name: Create Tag
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/main'
         run: |
             git config user.name "${{ github.actor }}"
             git config user.email "${{ github.actor }}@users.noreply.github.com"
@@ -105,7 +105,7 @@ jobs:
             git push origin ${{ steps.autoversion.outputs.nextVersion }}
 
       - name: Create Release
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/main'
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -116,7 +116,7 @@ jobs:
           body: Updates for ${{ steps.autoversion.outputs.nextVersion }}
 
       - name: Attach Artifact to Release
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -127,7 +127,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Push to CocoaPods
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/main'
         run: ./gradlew pushRemotePodspec
 
 
