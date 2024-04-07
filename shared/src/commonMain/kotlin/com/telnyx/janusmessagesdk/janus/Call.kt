@@ -37,7 +37,7 @@ data class Accept(
 }
 
 @Serializable
-data class Call(
+data class JanusCall(
     @SerialName("body")
     val body: CallBody,
     @SerialName("jsep")
@@ -60,7 +60,7 @@ data class Call(
     @SerialName("handle_id")
     var handleId: Long = 0
 
-    fun default(handleId: Long, sessionId: Long): Call {
+    fun default(handleId: Long, sessionId: Long): JanusCall {
         return this.apply {
             this.handleId = handleId
             janus = Janus.MESSAGE.value
@@ -90,10 +90,10 @@ class CallBody() {
 
     @SerialName("autoaccept_reinvites")
     var autoacceptReinvites: Boolean = false
-    fun default(userName: String,janusRequest:String = Janus.CALL.value): CallBody {
+    fun default(userName: String): CallBody {
         return CallBody().apply {
             this.autoacceptReinvites = false
-            request = janusRequest
+            request =  Janus.CALL.value
             uri = "sip:$userName@sipdev.telnyx.com"
         }
     }
