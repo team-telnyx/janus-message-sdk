@@ -1,8 +1,10 @@
 name: Deploy WIth KMM Bridge Github Workflow
 
 
-on: [push] # or any other event
-
+on:
+  push:
+    branches:
+      - develop
 # Jobs :  https://github.com/touchlab/KMMBridgeGithubWorkflow/blob/main/.github/workflows/faktorybuildautoversion.yml
 
 
