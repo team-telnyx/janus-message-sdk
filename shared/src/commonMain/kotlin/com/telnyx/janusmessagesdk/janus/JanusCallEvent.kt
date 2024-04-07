@@ -20,8 +20,8 @@ data class JanusCallEvent(
     @SerialName("sender")
     var sender: Long = 0
 
-    fun default(handleId: Long, body: CallBody, jsep: Jsep, sessionId: Long): Call {
-        return Call(
+    fun default(handleId: Long, body: CallBody, jsep: Jsep, sessionId: Long): JanusCall {
+        return JanusCall(
             body = body,
             jsep = jsep
         ).apply {
