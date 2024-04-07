@@ -5,10 +5,20 @@
     <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
     <!-- that they should prefer consuming it instead. -->
     <!-- do_not_remove: published-with-gradle-metadata -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.simpligility.maven.plugins</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>4.6.0</version> <!-- Use the latest version available -->
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
     <modelVersion>4.0.0</modelVersion>
     <groupId>JanusMessageSdk</groupId>
     <artifactId>shared-android</artifactId>
-    <version>0.7.28</version>
+    <version>0.7.29</version>
     <packaging>aar</packaging>
     <dependencies>
         <dependency>
@@ -278,14 +288,5 @@
             </exclusions>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.simpligility.maven.plugins</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-                <version>4.6.0</version> <!-- Use the latest version available -->
-                <extensions>true</extensions>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>

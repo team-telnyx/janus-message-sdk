@@ -8,10 +8,8 @@ import kotlinx.uuid.UUID
 
 @Serializable
 data class Register(
-
     @SerialName("session_id")
     val sessionId: Long = UUID().timeStamp,
-
 ) : JanusBase() {
     fun encode(): String {
         return json.encodeToString(this)
@@ -27,8 +25,7 @@ data class Register(
     var transaction: String = UUID().toString()
 
     fun default(handleId: Long, body: Body): Register {
-        return Register(
-        ).apply {
+        return this.apply {
             janus = Janus.MESSAGE.value
             this.handleId = handleId
             this.body = body
