@@ -38,7 +38,7 @@ kotlin {
     iosSimulatorArm64()
 
 
-    version = "0.7.28"
+    version = "0.7.29"
 
     cocoapods {
         summary = "Janus-message-sdk"
@@ -193,10 +193,7 @@ publishing {
                 groupId = "com.telnyx"
                 artifactId = this@Build_gradle.getArtifactId()
                 version = getVersionName()
-                //artifact("$buildDir/outputs/aar/${this@Build_gradle.getArtifactId()}-${getVersionName()}-release.aar")
                 artifact(tasks["sourceJar"])
-                //artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
-
             }
             pom {
             }

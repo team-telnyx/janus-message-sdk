@@ -118,7 +118,7 @@ fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Uni
             }
         }
         JanusEventType.ACK.value -> {
-            val result = json.decodeFromString<TransactionSuccess>(message)
+            val result = json.decodeFromString<Ack>(message)
             callback(JanusEvent.ACKNOWLEDGED,result)
         }
     }

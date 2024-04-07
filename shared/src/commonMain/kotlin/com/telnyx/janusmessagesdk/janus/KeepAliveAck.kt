@@ -28,3 +28,15 @@ data class KeepAliveAck(
     }
 }
 
+
+@Serializable
+data class Ack(
+    @SerialName("session_id")
+    var sessionId: Long,
+    @SerialName("transaction")
+    var transaction: String
+) : JanusBase() {
+    fun encode(): String {
+        return json.encodeToString(this)
+    }
+}
