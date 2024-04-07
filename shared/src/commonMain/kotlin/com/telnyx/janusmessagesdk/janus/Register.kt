@@ -35,29 +35,32 @@ data class Register(
 
 }
 
+
+
+
+
 @Serializable
-data class Body(
-    @SerialName("username")
-    val username: String ?= null,
-    @SerialName("login_token")
-    val loginToken: String?,
-    @SerialName("login")
-    val login: String?,
-
-) {
-
+class Body{
     @SerialName("proxy")
     var proxy: String? = null
     @SerialName("request")
     var request: String? = null
-    fun default(login: String, loginToken: String,displayName: String, ): Body {
-        return Body(
-            loginToken = loginToken,
-            login = login,
-            username = "sip:$login@sipdev.telnyx.com",
-        ).apply {
+    @SerialName("login")
+    var login: String? = null
+    @SerialName("display_name")
+    var displayName: String? = ""
+    @SerialName("username")
+    var username: String ?= null
+    @SerialName("password")
+    var password: String ?= null
+    fun default(userName:String,password:String,displayName: String = ""): Body {
+        return this.apply {
+            this.login = userName
+            this.password = password
+            this.username = "sip:$userName@sipdev.telnyx"
             request = Janus.REGISTER.value
             proxy = "sip:sipdev.telnyx.com:5060"
+            this.displayName = displayName
         }
     }
 }

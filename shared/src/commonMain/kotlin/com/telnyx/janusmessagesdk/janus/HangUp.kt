@@ -3,35 +3,36 @@ package com.telnyx.janusmessagesdk.janus
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
+import kotlinx.uuid.UUID
 
 @Serializable
 data class HangUpRequest(
-    @SerialName("body")
-    var body: Body,
     @SerialName("handle_id")
     var handleId: Long,
     @SerialName("session_id")
     var sessionId: Long,
-    @SerialName("transaction")
-    var transaction: String
+
 ) : JanusBase() {
+
 
     fun encode(): String {
         return json.encodeToString(this)
     }
 
-    fun default(handleId: Long, sessionId: Long): HangUpRequest {
-        return HangUpRequest(
-            body = Body(JanusEvent.HANGUP.value()),
-            handleId = handleId,
-            sessionId = sessionId,
-            transaction = transaction
-        ).apply {
+    @SerialName("body")
+    var body: HangUpBody? = null
+
+    @SerialName("transaction")
+    var transaction: String = ""
+    fun default(): HangUpRequest {
+        return this.apply {
             janus = Janus.MESSAGE.value
+            body = HangUpBody(JanusEvent.HANGUP.value())
+            transaction = UUID().toString()
         }
     }
     @Serializable
-    data class Body(
+    data class HangUpBody(
         @SerialName("request")
         var request: String
     )

@@ -26,11 +26,8 @@ data class Accept(
     @SerialName("handle_id")
     var handleId: Long = 0
 
-    fun default(handleId: Long, body: CallBody, jsep: Jsep, sessionId: Long): Call {
-        return Call(
-            body = body,
-            jsep = jsep
-        ).apply {
+    fun default(handleId: Long, sessionId: Long): Accept {
+        return this.apply {
             this.handleId = handleId
             janus = Janus.MESSAGE.value
             this.sessionId = sessionId
@@ -63,11 +60,8 @@ data class Call(
     @SerialName("handle_id")
     var handleId: Long = 0
 
-    fun default(handleId: Long, body: CallBody, jsep: Jsep, sessionId: Long): Call {
-        return Call(
-            body = body,
-            jsep = jsep
-        ).apply {
+    fun default(handleId: Long, sessionId: Long): Call {
+        return this.apply {
             this.handleId = handleId
             janus = Janus.MESSAGE.value
             this.sessionId = sessionId

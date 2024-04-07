@@ -38,7 +38,7 @@ kotlin {
     iosSimulatorArm64()
 
 
-    version = "0.7.29"
+    version = "0.7.30"
 
     cocoapods {
         summary = "Janus-message-sdk"
@@ -186,19 +186,7 @@ fun Project.procRunFailLog(vararg params: String):List<String>{
 
 
 publishing {
-    publications {
 
-        create<MavenPublication>("maven") {
-            run {
-                groupId = "com.telnyx"
-                artifactId = this@Build_gradle.getArtifactId()
-                version = getVersionName()
-                artifact(tasks["sourceJar"])
-            }
-            pom {
-            }
-        }
-    }
 
     repositories {
         mavenLocal()
