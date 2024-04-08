@@ -31,6 +31,7 @@ enum class Janus(val value: String) {
     SUCCESS("success"),
     ERROR("error"),
     CALL("call"),
+    OFFER("offer"),
 
 }
 
@@ -87,6 +88,11 @@ fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Uni
             when (event.plugindata?.data?.result?.event) {
                 JanusEvent.REGISTERING.value() -> {
                     // Registering
+                }
+                JanusEvent.HANGUP.value() -> {
+                    // Registering
+                    val hangUpEvent = json.decodeFromString<HangUpEvent>(message)
+                    callback(JanusEvent.HANGUP,hangUpEvent)
                 }
                 JanusEvent.REGISTERED.value() -> {
                     //callback(JanusMethod.EVENT,success)

@@ -12,6 +12,8 @@ data class PluginData(
 ) {
     @Serializable
     data class Data(
+        @SerialName("call_id")
+        val callId: String,
         @SerialName("result")
         val result: Result,
         @SerialName("sip")
@@ -28,9 +30,17 @@ data class Result(
     val registerSent: Boolean,
     @SerialName("username")
     val username: String,
+    @SerialName("call_id")
+    val callId: String,
+    @SerialName("callee")
+    val callee: String,
+    @SerialName("displayname")
+    val displayName: String,
     @SerialName("headers")
     val headers: Headers
 )
+
+
 @Serializable
 data class Headers(
     @SerialName("X-Telnyx-Leg-ID")

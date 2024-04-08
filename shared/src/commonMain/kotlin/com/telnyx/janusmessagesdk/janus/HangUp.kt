@@ -40,14 +40,45 @@ data class HangUpRequest(
 
 @Serializable
 data class HangUpEvent(
-    @SerialName("reason")
-    var reason: String,
+    @SerialName("plugindata")
+    var plugindata: HangUpPluginData,
     @SerialName("sender")
     var sender: Long,
     @SerialName("session_id")
     var sessionId: Long
-) : JanusBase() {
-    fun encode(): String {
-        return json.encodeToString(this)
-    }
+) : JanusBase()
+{
+    @Serializable
+    data class HangUpPluginData(
+        @SerialName("data")
+        var data: HangUpData,
+        @SerialName("plugin")
+        var plugin: String
+    )
+    @Serializable
+    data class HangUpData(
+        @SerialName("call_id")
+        var callId: String,
+        @SerialName("result")
+        var result: HangUpDataResult,
+        @SerialName("sip")
+        var sip: String
+    )
+
+    @Serializable
+    data class HangUpDataResult(
+        @SerialName("code")
+        var code: Int,
+        @SerialName("event")
+        var event: String,
+        @SerialName("reason")
+        var reason: String,
+        @SerialName("reason_header")
+        var reasonHeader: String,
+        @SerialName("reason_header_cause")
+        var reasonHeaderCause: String,
+        @SerialName("reason_header_protocol")
+        var reasonHeaderProtocol: String
+    )
 }
+
