@@ -8,6 +8,7 @@ import kotlinx.serialization.json.Json
 val json = Json {
     ignoreUnknownKeys = true
     encodeDefaults = true
+    isLenient = true
 }
 
 enum class JanusEventType(val value: String){
