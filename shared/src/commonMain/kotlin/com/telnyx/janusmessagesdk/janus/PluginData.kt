@@ -13,11 +13,11 @@ data class PluginData(
     @Serializable
     data class Data(
         @SerialName("call_id")
-        val callId: String,
+        val callId: String?  = null,
         @SerialName("result")
         val result: Result,
         @SerialName("sip")
-        val sip: String
+        val sip: String? = null
     )
 }
 @Serializable
@@ -25,26 +25,26 @@ data class Result(
     @SerialName("event")
     val event: String,
     @SerialName("master_id")
-    val masterId: Long,
+    val masterId: Long? = null,
     @SerialName("register_sent")
-    val registerSent: Boolean,
+    val registerSent: Boolean? = null,
     @SerialName("username")
-    val username: String,
+    val username: String? = null,
     @SerialName("call_id")
-    val callId: String,
+    val callId: String? = null,
     @SerialName("callee")
-    val callee: String,
+    val callee: String? = null,
     @SerialName("displayname")
-    val displayName: String,
+    val displayName: String? = null,
     @SerialName("headers")
-    val headers: Headers
+    val headers: Headers? = null
 )
 
 
 @Serializable
 data class Headers(
     @SerialName("X-Telnyx-Leg-ID")
-    var xTelnyxLegID: String,
+    var xTelnyxLegID: String? = null,
     @SerialName("X-Telnyx-Session-ID")
-    var xTelnyxSessionID: String
+    var xTelnyxSessionID: String? = null
 )
