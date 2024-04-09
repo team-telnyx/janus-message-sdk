@@ -80,7 +80,7 @@ fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Uni
 
         }
         JanusEventType.MEDIA.value -> {
-            Logger.i { "Hello World" }
+            Logger.i { "Media" }
 
         }
         JanusEventType.EVENT.value -> {

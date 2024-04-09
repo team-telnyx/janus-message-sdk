@@ -1,5 +1,5 @@
 PODS:
-  - JanusMessageSDK (0.7.34)
+  - JanusMessageSDK (0.7.35)
 
 DEPENDENCIES:
   - JanusMessageSDK (from `../shared`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../shared"
 
 SPEC CHECKSUMS:
-  JanusMessageSDK: 342f4817ddabfdd0e75a183fd5a7ed4a0a60b427
+  JanusMessageSDK: 9024ea7ba5a96e1c4cf0e8bdd0cf2192fc7032d4
 
 PODFILE CHECKSUM: 1e004fa731d7a04f3d9d5649deb94144c69121d3
 
