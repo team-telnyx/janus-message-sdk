@@ -85,15 +85,20 @@ class CallBody() {
     @SerialName("request")
     var request: String = ""
 
+
+    @SerialName("call_id")
+    var callId: String = ""
+
     @SerialName("uri")
     var uri: String = ""
 
     @SerialName("autoaccept_reinvites")
     var autoacceptReinvites: Boolean = false
-    fun default(userName: String): CallBody {
+    fun default(userName: String,callId:String): CallBody {
         return CallBody().apply {
             this.autoacceptReinvites = false
             request =  Janus.CALL.value
+            this.callId = callId
             uri = "sip:$userName@sipdev.telnyx.com"
         }
     }

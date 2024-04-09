@@ -186,7 +186,20 @@ fun Project.procRunFailLog(vararg params: String):List<String>{
 
 
 publishing {
+    publications {
 
+        create<MavenPublication>("maven") {
+            run {
+                groupId = "com.telnyx"
+                artifactId = this@Build_gradle.getArtifactId()
+                version = getVersionName()
+                artifact(tasks["sourceJar"])
+
+            }
+            pom {
+            }
+        }
+    }
 
     repositories {
         mavenLocal()

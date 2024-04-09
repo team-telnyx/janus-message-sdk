@@ -1,5 +1,6 @@
 package com.telnyx.janusmessagesdk.janus
 
+import io.ktor.client.plugins.UserAgent
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
@@ -53,12 +54,16 @@ class Body{
     var username: String ?= null
     @SerialName("password")
     var password: String ?= null
-    fun default(userName:String,password:String,displayName: String = ""): Body {
+
+    @SerialName("user_agent")
+    var userAgent: String? = null
+    fun default(userName:String,password:String,displayName: String = "",userAgent: String = ""): Body {
         return this.apply {
             this.login = userName
             this.password = password
             this.username = "sip:$userName@sipdev.telnyx"
             request = Janus.REGISTER.value
+            this.userAgent = userAgent
             proxy = "sip:sipdev.telnyx.com:5060"
             this.displayName = displayName
         }

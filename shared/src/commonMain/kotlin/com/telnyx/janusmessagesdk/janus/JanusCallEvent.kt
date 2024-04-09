@@ -1,9 +1,10 @@
 package com.telnyx.janusmessagesdk.janus
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.uuid.UUID
-
+@Serializable
 data class JanusCallEvent(
     @SerialName("body")
     val pluginData: PluginData,
