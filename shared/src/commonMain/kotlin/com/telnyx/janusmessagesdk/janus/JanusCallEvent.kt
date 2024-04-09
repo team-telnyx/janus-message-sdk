@@ -7,9 +7,9 @@ import kotlinx.uuid.UUID
 @Serializable
 data class JanusCallEvent(
     @SerialName("body")
-    val pluginData: PluginData,
+    val pluginData: PluginData? = null,
     @SerialName("jsep")
-    val jsep: Jsep
+    val jsep: Jsep? = null
 ) : EventBase() {
     fun encode(): String {
         return json.encodeToString(this)

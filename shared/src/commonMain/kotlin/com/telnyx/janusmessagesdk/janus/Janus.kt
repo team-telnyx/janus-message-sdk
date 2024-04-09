@@ -46,7 +46,7 @@ enum class JanusEvent(val value: String) {
     INCOMING_CALL("incomingcall"),
     CALLING("calling"),
     HANGUP("hangup"),
-    ANSWER("accepted"),
+    ACCEPTED("accepted"),
     RINGING("ringing"),
     PROGRESS("progress"),
     DTMF("dtmf"),
@@ -108,9 +108,13 @@ fun decodeJanusMessage(message: String, callback: (JanusEvent, JanusBase) -> Uni
                     val ringing = json.decodeFromString<JanusCallEvent>(message)
                     callback(JanusEvent.RINGING,ringing)
                 }
-                JanusEvent.ANSWER.value() -> {
+                JanusEvent.ACCEPTED.value() -> {
+                    Logger.i { "Accepted" }
                     val answered = json.decodeFromString<JanusCallEvent>(message)
-                    callback(JanusEvent.ANSWER,answered)
+                    callback(JanusEvent.ACCEPTED,answered)
+                }
+                else -> {
+                    Logger.i { "Event not found $message" }
                 }
             }
         }

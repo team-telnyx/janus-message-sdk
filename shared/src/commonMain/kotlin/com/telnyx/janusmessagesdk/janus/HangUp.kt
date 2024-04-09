@@ -70,15 +70,15 @@ data class HangUpEvent(
         @SerialName("code")
         var code: Int,
         @SerialName("event")
-        var event: String,
+        var event: String? = null,
         @SerialName("reason")
-        var reason: String,
+        var reason: String? = null,
         @SerialName("reason_header")
-        var reasonHeader: String,
+        var reasonHeader: String? = null,
         @SerialName("reason_header_cause")
-        var reasonHeaderCause: String,
+        var reasonHeaderCause: String? = null,
         @SerialName("reason_header_protocol")
-        var reasonHeaderProtocol: String
+        var reasonHeaderProtocol: String? = null
     )
 }
 
